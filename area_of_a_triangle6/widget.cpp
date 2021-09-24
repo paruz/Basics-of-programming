@@ -1,19 +1,23 @@
 #include "widget.h"
 #include "ui_widget.h"
 #include <QDoubleValidator>
-
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Widget)
 {
     ui->setupUi(this);
+    QValidator *validator = new QDoubleValidator(-1.79769e+308, 1.79769e+308, 16);
+    ui->x_1->setValidator(validator);
+    ui->x_2->setValidator(validator);
+    ui->x_3->setValidator(validator);
+    ui->y_1->setValidator(validator);
+    ui->y_2->setValidator(validator);
+    ui->y_3->setValidator(validator);
 }
-
 Widget::~Widget()
 {
     delete ui;
 }
-
 void Widget::on_pushButton_clicked()
 {
     QString ox1 = ui->x_1->text(), oy1 = ui->y_1->text(), ox2 = ui->x_2->text(), oy2 = ui->y_2->text(), ox3 = ui->x_3->text(), oy3 = ui->y_3->text();
