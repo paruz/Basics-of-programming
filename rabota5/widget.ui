@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>663</width>
-    <height>441</height>
+    <width>918</width>
+    <height>459</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>360</y>
+     <x>300</x>
+     <y>300</y>
      <width>201</width>
      <height>51</height>
     </rect>
@@ -29,38 +29,38 @@
   <widget class="QWidget" name="layoutWidget_5">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>90</y>
+     <x>480</x>
+     <y>120</y>
      <width>38</width>
-     <height>111</height>
+     <height>131</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_5">
     <item>
      <widget class="QLabel" name="label_26">
       <property name="text">
-       <string>(0-10)</string>
+       <string>(1-9)</string>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QLabel" name="label_27">
       <property name="text">
-       <string>(0-10)</string>
+       <string>(1-9)</string>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QLabel" name="label_28">
       <property name="text">
-       <string>(0-10)</string>
+       <string>(1-9)</string>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QLabel" name="label_29">
       <property name="text">
-       <string>(0-10)</string>
+       <string>(1-9)</string>
       </property>
      </widget>
     </item>
@@ -84,49 +84,12 @@
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_19">
+     <widget class="QLineEdit" name="points">
       <property name="text">
        <string>20</string>
       </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="layoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>500</x>
-     <y>50</y>
-     <width>38</width>
-     <height>111</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout_4">
-    <item>
-     <widget class="QLabel" name="label_22">
-      <property name="text">
-       <string>(0-10)</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_23">
-      <property name="text">
-       <string>(0-10)</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_24">
-      <property name="text">
-       <string>(0-10)</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_25">
-      <property name="text">
-       <string>(0-10)</string>
+      <property name="readOnly">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
@@ -137,8 +100,8 @@
     <rect>
      <x>10</x>
      <y>20</y>
-     <width>201</width>
-     <height>181</height>
+     <width>460</width>
+     <height>233</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -152,7 +115,35 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit"/>
+       <widget class="QLineEdit" name="name_input"/>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_8">
+      <item>
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string>Пол:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="man">
+        <property name="text">
+         <string>Мужской</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="woman">
+        <property name="text">
+         <string>Женский</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -161,12 +152,17 @@
       <item>
        <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>Пол</string>
+         <string>Гендер:</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="comboBox">
+       <widget class="QComboBox" name="gender">
+        <item>
+         <property name="text">
+          <string>гетеросексуал</string>
+         </property>
+        </item>
         <item>
          <property name="text">
           <string>бесполый</string>
@@ -182,6 +178,176 @@
           <string>мужеженственный (внутренне, по ощущениям)</string>
          </property>
         </item>
+        <item>
+         <property name="text">
+          <string>ощущающие себя в разное время то мужчиной, то женщиной</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>предженский, недоженский</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>предмужской, недомужской</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>предмужчина, недомужчина</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>предженщина, недоженщина</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>предполовой, недополовой</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>женский предпол, недополовой женский</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>мужской предпол, недополовой мужской</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>предполовой мужчина, недополовой мужчина</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>предполовая женщина, недополовая женщина</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>от женского к мужскому</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>женщина, хирургически, внешне, принявшая облик мужчины</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>неустойчивый, «текучий»</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>отрицающий традиционную классификацию</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>свой особенный, своеобычный</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>межполовой</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>от мужчины к женщине</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>мужчина, хирургически, внешне, принявший облик женщины</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>стремящиеся устранить половые признаки во внешнем виде</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>всеобщеполовой</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>переходной к другому полу</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>переходной к женскому половому состоянию</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>переходной к мужскому половому состоянию</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>переходной к мужчине</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>переходной к лицу, вне половой классификации</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>переходной к женщине</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>транссексуальный</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>женский траннсексуальный</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>мужской транссексуальный</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>мужчина транссексуал</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>женщина транссексуал</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>лицо траннсексуал</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>две души, «двудушный» (без негативной коннотации)</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>другое</string>
+         </property>
+        </item>
        </widget>
       </item>
      </layout>
@@ -191,14 +357,17 @@
       <item>
        <widget class="QLabel" name="label_3">
         <property name="text">
-         <string>Сила       </string>
+         <string>Сила      </string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_2">
+       <widget class="QLineEdit" name="strength">
         <property name="inputMethodHints">
          <set>Qt::ImhNone</set>
+        </property>
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </item>
@@ -214,7 +383,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_3"/>
+       <widget class="QLineEdit" name="agility">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -228,7 +401,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_4"/>
+       <widget class="QLineEdit" name="mind">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -242,7 +419,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_5"/>
+       <widget class="QLineEdit" name="luck">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -251,86 +432,274 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>280</x>
-     <y>50</y>
-     <width>194</width>
-     <height>152</height>
+     <x>620</x>
+     <y>20</y>
+     <width>272</width>
+     <height>311</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout_6">
+   <layout class="QVBoxLayout" name="right_main">
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout_3">
+     <layout class="QHBoxLayout" name="horizontalLayout_10">
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_18">
-        <item>
-         <widget class="QLabel" name="label_18">
-          <property name="text">
-           <string>Здоровье</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEdit_16"/>
-        </item>
-       </layout>
+       <widget class="QLabel" name="name_output">
+        <property name="text">
+         <string>Привет </string>
+        </property>
+       </widget>
       </item>
+     </layout>
+    </item>
+    <item>
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_7">
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_20">
+       <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
-         <widget class="QLabel" name="label_20">
-          <property name="text">
-           <string>Атака      </string>
-          </property>
-         </widget>
+         <layout class="QHBoxLayout" name="horizontalLayout_18">
+          <item>
+           <widget class="QLabel" name="label_health">
+            <property name="text">
+             <string>Здоровье</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="health">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_18"/>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_19">
-        <item>
-         <widget class="QLabel" name="label_19">
-          <property name="text">
-           <string>Защита   </string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEdit_17"/>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_17">
-        <item>
-         <widget class="QLabel" name="label_17">
-          <property name="text">
-           <string>Мана       </string>
-          </property>
-         </widget>
+         <layout class="QHBoxLayout" name="horizontalLayout_20">
+          <item>
+           <widget class="QLabel" name="label_attack">
+            <property name="text">
+             <string>Атака      </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="attack">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_15"/>
+         <layout class="QHBoxLayout" name="horizontalLayout_19">
+          <item>
+           <widget class="QLabel" name="label_mana">
+            <property name="text">
+             <string>Мана       </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="mana">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_17">
+          <item>
+           <widget class="QLabel" name="label_speed">
+            <property name="text">
+             <string>Скорость </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="speed">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </item>
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_22">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <widget class="QLabel" name="label_30">
-        <property name="text">
-         <string>Класс      </string>
+       <spacer name="verticalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
         </property>
-       </widget>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_20"/>
+       <layout class="QHBoxLayout" name="horizontalLayout_22">
+        <item>
+         <widget class="QLabel" name="label_character_class">
+          <property name="text">
+           <string>Класс: </string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="character_class">
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>430</y>
+     <width>271</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_9">
+    <item>
+     <widget class="QLabel" name="label_8">
+      <property name="text">
+       <string>Ошибка:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="error">
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="WindowText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>170</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>170</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+        <inactive>
+         <colorrole role="WindowText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>170</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>170</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </inactive>
+        <disabled>
+         <colorrole role="WindowText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>120</red>
+            <green>120</green>
+            <blue>120</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>120</red>
+            <green>120</green>
+            <blue>120</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </disabled>
+       </palette>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
