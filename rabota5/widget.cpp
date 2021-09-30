@@ -20,7 +20,7 @@ Widget::Widget(QWidget *parent) :
     ui->character_class->hide();
     ui->label_character_class->hide();
 
-    QValidator *validator = new QIntValidator(1,9);
+    QValidator *validator = new QIntValidator(1,10,this);
     ui->strength->setValidator(validator);
     ui->agility->setValidator(validator);
     ui->mind->setValidator(validator);
@@ -31,6 +31,35 @@ Widget::~Widget()
 {
     delete ui;
 }
+
+void Widget::setColor(int vslue, QLineEdit *edit)
+
+{
+    if (vslue < 1)
+        edit->setStyleSheet("background: red;");
+    else if (vslue < 5)
+        edit->setStyleSheet("background: orange;");
+    else if (vslue < 8)
+        edit->setStyleSheet("background: yellow;");
+    else if (vslue < 11)
+        edit->setStyleSheet("background: green;");
+    else
+        edit->setStyleSheet("background: red;");
+}
+//void Widget::setColor(int vslue)
+
+//{
+//    if (vslue < 1)
+//        ui->strength->setStyleSheet("background: red;");
+//    else if (vslue < 5)
+//        ui->strength->setStyleSheet("background: orange;");
+//    else if (vslue < 8)
+//        ui->strength->setStyleSheet("background: yellow;");
+//    else if (vslue < 11)
+//        ui->strength->setStyleSheet("background: green;");
+//    else
+//        ui->strength->setStyleSheet("background: red;");
+//}
 void Widget::doit()
 {
     QString sila_text, lovkost_text, intelekt_text, udacha_text, ochki_text;
@@ -48,41 +77,61 @@ void Widget::doit()
     udacha = udacha_text.toInt();
     ochki = ochki_text.toInt();
 
-    if (sila < 1)
-        ui->strength->setStyleSheet("background: red;");
-    else if (sila < 5)
-        ui->strength->setStyleSheet("background: orange;");
-    else if (sila < 8)
-        ui->strength->setStyleSheet("background: yellow;");
-    else if (sila < 10)
-        ui->strength->setStyleSheet("background: green;");
+    setColor(sila, ui->strength);
+    setColor(lovkost, ui->agility);
+    setColor(intelekt, ui->mind);
+    setColor(udacha, ui->luck);
 
-    if (lovkost < 1)
-        ui->agility->setStyleSheet("background: red;");
-    else if (lovkost < 5)
-        ui->agility->setStyleSheet("background: orange;");
-    else if (lovkost < 8)
-        ui->agility->setStyleSheet("background: yellow;");
-    else if (lovkost < 10)
-        ui->agility->setStyleSheet("background: green;");
+//    setColor(sila);
+//    setColor(lovkost);
+//    setColor(intelekt);
+//    setColor(udacha);
 
-    if (intelekt < 1)
-        ui->mind->setStyleSheet("background: red;");
-    else if (intelekt < 5)
-        ui->mind->setStyleSheet("background: orange;");
-    else if (intelekt < 8)
-        ui->mind->setStyleSheet("background: yellow;");
-    else if (intelekt < 10)
-        ui->mind->setStyleSheet("background: green;");
 
-    if (udacha < 1)
-        ui->luck->setStyleSheet("background: red;");
-    else if (udacha < 5)
-        ui->luck->setStyleSheet("background: orange;");
-    else if (udacha < 8)
-        ui->luck->setStyleSheet("background: yellow;");
-    else if (udacha < 10)
-        ui->luck->setStyleSheet("background: green;");
+
+//    if (sila < 1)
+//        ui->strength->setStyleSheet("background: red;");
+//    else if (sila < 5)
+//        ui->strength->setStyleSheet("background: orange;");
+//    else if (sila < 8)
+//        ui->strength->setStyleSheet("background: yellow;");
+//    else if (sila < 11)
+//        ui->strength->setStyleSheet("background: green;");
+//    else
+//        ui->strength->setStyleSheet("background: red;");
+
+//    if (lovkost < 1)
+//        ui->agility->setStyleSheet("background: red;");
+//    else if (lovkost < 5)
+//        ui->agility->setStyleSheet("background: orange;");
+//    else if (lovkost < 8)
+//        ui->agility->setStyleSheet("background: yellow;");
+//    else if (lovkost < 11)
+//        ui->agility->setStyleSheet("background: green;");
+//    else
+//        ui->agility->setStyleSheet("background: red;");
+
+//    if (intelekt < 1)
+//        ui->mind->setStyleSheet("background: red;");
+//    else if (intelekt < 5)
+//        ui->mind->setStyleSheet("background: orange;");
+//    else if (intelekt < 8)
+//        ui->mind->setStyleSheet("background: yellow;");
+//    else if (intelekt < 11)
+//        ui->mind->setStyleSheet("background: green;");
+//    else
+//        ui->mind->setStyleSheet("background: red;");
+
+//    if (udacha < 1)
+//        ui->luck->setStyleSheet("background: red;");
+//    else if (udacha < 5)
+//        ui->luck->setStyleSheet("background: orange;");
+//    else if (udacha < 8)
+//        ui->luck->setStyleSheet("background: yellow;");
+//    else if (udacha < 11)
+//        ui->luck->setStyleSheet("background: green;");
+//    else
+//        ui->luck->setStyleSheet("background: red;");
 
     ochki_text = ui->strength->text();
     ochki = sila_text.toInt();
@@ -169,8 +218,8 @@ void Widget::on_pushButton_clicked()
         ui->error->setText("Нужно потратить все очки");
     else if (ochki < 0)
         ui->error->setText("Потрачено слишком много очков");
-    else if ((sila == 0) or (lovkost == 0) or (intelekt == 0) or (udacha == 0))
-        ui->error->setText("Нужно ввести от 1 до 9");
+    else if (((sila == 0) or (lovkost == 0) or (intelekt == 0) or (udacha == 0)) or ((sila > 10) or (lovkost > 10) or (intelekt > 10) or (udacha > 10)))
+        ui->error->setText("Нужно ввести от 1 до 10");
     else
     {
         ui->error->setText("");

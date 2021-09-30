@@ -39,28 +39,28 @@
     <item>
      <widget class="QLabel" name="label_26">
       <property name="text">
-       <string>(1-9)</string>
+       <string>(1-10)</string>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QLabel" name="label_27">
       <property name="text">
-       <string>(1-9)</string>
+       <string>(1-10)</string>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QLabel" name="label_28">
       <property name="text">
-       <string>(1-9)</string>
+       <string>(1-10)</string>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QLabel" name="label_29">
       <property name="text">
-       <string>(1-9)</string>
+       <string>(1-10)</string>
       </property>
      </widget>
     </item>

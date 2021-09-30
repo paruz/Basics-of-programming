@@ -1,7 +1,7 @@
 #ifndef WIDGET_H
 #define WIDGET_H
 
-#include <QWidget>
+#include <QLineEdit>
 
 namespace Ui {
 class Widget;
@@ -34,6 +34,11 @@ private slots:
     void on_pushButton_clicked();
 
     void doit();
+
+    void setColor(int vslue, QLineEdit *edit);
+
+   // void setColor(int vslue);
+
 private:
     Ui::Widget *ui;
 };
