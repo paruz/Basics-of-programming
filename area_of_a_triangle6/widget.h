@@ -16,7 +16,9 @@ public:
     ~Widget();
 
 private slots:
-    void on_pushButton_clicked();
+    void on_pushButton_S_clicked();
+
+    void on_pushButton_P_clicked();
 
 private:
     Ui::Widget *ui;

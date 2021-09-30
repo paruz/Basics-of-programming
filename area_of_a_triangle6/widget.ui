@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>605</width>
-    <height>463</height>
+    <width>601</width>
+    <height>388</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,7 +26,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="x_1"/>
+        <widget class="QLineEdit" name="x_1">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_3">
@@ -49,7 +53,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="y_1"/>
+        <widget class="QLineEdit" name="y_1">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_6">
@@ -70,7 +78,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="x_2"/>
+        <widget class="QLineEdit" name="x_2">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_4">
@@ -93,7 +105,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="y_2"/>
+        <widget class="QLineEdit" name="y_2">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_9">
@@ -114,7 +130,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="x_3"/>
+        <widget class="QLineEdit" name="x_3">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_5">
@@ -137,7 +157,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="y_3"/>
+        <widget class="QLineEdit" name="y_3">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_11">
@@ -151,45 +175,66 @@
     </layout>
    </item>
    <item row="1" column="0">
-    <widget class="QPushButton" name="pushButton">
-     <property name="text">
-      <string>Посчитать площадь</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout_5">
+    <layout class="QVBoxLayout" name="verticalLayout_3">
      <item>
-      <widget class="QLabel" name="label">
+      <widget class="QPushButton" name="pushButton_S">
        <property name="text">
-        <string>Результат:</string>
+        <string>Посчитать площадь</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="output">
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item row="3" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout_4">
-     <item>
-      <widget class="QLabel" name="label_2">
+      <widget class="QPushButton" name="pushButton_P">
        <property name="text">
-        <string>Ошибка:   </string>
+        <string>Посчитать периметр</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="error">
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
-      </widget>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_5">
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>Результат:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="output">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>Оштбка:   </string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="error">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </item>
     </layout>
    </item>
