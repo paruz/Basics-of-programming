@@ -22,8 +22,7 @@ private slots:
 
     void on_pushButton_S_clicked();
 
-    void on_pushButton_P_clicked();
-
+    bool check(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4);
 private:
     Ui::Widget *ui;
 };
