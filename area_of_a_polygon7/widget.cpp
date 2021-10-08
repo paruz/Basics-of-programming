@@ -1,6 +1,8 @@
 #include "widget.h"
 #include "ui_widget.h"
 #include <cmath>
+#include <QDoubleValidator>
+#include <math.h>
 
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
@@ -32,8 +34,9 @@ void Widget::on_pushButton_S_clicked()
 {
     double result_S = 0, result_P = 0;
     int n = ui->tableWidget->rowCount();
+    //int per1, per2;
     double X[n-1], Y[n-1];
-    bool flag = false;
+    bool flag_check = false, flag_null = false, flag_ok1 = false, flag_ok2 = false;
     for (int r = 0; r < n; r++)
     {
         QTableWidgetItem *item1 = ui->tableWidget->item(r, 0);
@@ -41,7 +44,6 @@ void Widget::on_pushButton_S_clicked()
 
         if(item1 != nullptr && item2 != nullptr)
         {
-            // Есть обе ячейки
             QString s1 = item1->text();
             QString s2 = item2->text();
             bool ok1, ok2;
@@ -52,18 +54,42 @@ void Widget::on_pushButton_S_clicked()
                 X[r] = d1;
                 Y[r] = d2;
             }
+            else if (!ok1 and !ok2)
+            {
+                flag_ok1 = true;
+                //per1 = r;
+                flag_ok2 = true;
+                //per2 = r;
+            }
+            else if (!ok1)
+            {
+                flag_ok1 = true;
+                //per1 = r;
+            }
+            else
+            {
+                flag_ok2 = true;
+                //per2 = r;
+            }
+        }
+        else
+        {
+            flag_null = true;
         }
     }
     int j = n - 1;
     for (int i = 0; i < n; i++)
     {
         result_S += (X[j] + X[i]) * (Y[j] - Y[i]);
+        if (n > 3)
+        {
         for (int k = i + 2; k < n; k++)
         {
             if(check(X[i], Y[i], X[i+1], Y[i+1], X[k], Y[k], X[k+1], Y[k+1]))
             {
-                flag = true;
+                flag_check = true;
             }
+        }
         }
         j = i;
     }
@@ -72,21 +98,68 @@ void Widget::on_pushButton_S_clicked()
         int j = (i+1)%n;
         result_P += sqrt((X[i] - X[j])*(X[i] - X[j]) + (Y[i] - Y[j])*(Y[i] - Y[j]));
     }
-    if (flag)
+    if (flag_ok1 and flag_ok2)
+    {
+        ui->error->setText("X и Y выходят из диапозона чисел");
+        ui->output_S->setText("");
+        ui->output_P->setText("");
+    }
+    else if (flag_ok1)
+    {
+        ui->error->setText("X выходит из диапозона чисел");
+        ui->output_S->setText("");
+        ui->output_P->setText("");
+    }
+    else if (flag_ok2)
+    {
+        ui->error->setText("Y выходит из диапозона чисел");
+        ui->output_S->setText("");
+        ui->output_P->setText("");
+    }
+    else if (flag_null)
+    {
+        ui->error->setText("Нельзя оставлять поля пустыми");
+        ui->output_S->setText("");
+        ui->output_P->setText("");
+    }
+    else if (flag_check)
     {
         ui->error->setText("Отрезки в многоугольнике пересекаются, нельзя посчитать площадь");
         ui->output_S->setText("");
+        if(isinf(result_P))
+        {
+            ui->output_P->setText("Слишком большой резултат");
+        }
+        else
+        {
+            QString resStr_P = QString::number(result_P, 'g', 16);
+            ui->output_P->setText(resStr_P);
+        }
     }
     else
     {
         ui->error->setText("");
         result_S = abs(result_S / 2);
-        QString resStr_S = QString::number(result_S, 'g', 16);
-        ui->output_S->setText(resStr_S);
-    }
+        if(isinf(result_S))
+        {
+            ui->output_S->setText("Слишком большой резултат");
+        }
+        else
+        {
+            QString resStr_S = QString::number(result_S, 'g', 16);
+            ui->output_S->setText(resStr_S);
+        }
 
-    QString resStr_P = QString::number(result_P, 'g', 16);
-    ui->output_P->setText(resStr_P);
+        if(isinf(result_P))
+        {
+            ui->output_P->setText("Слишком большой резултат");
+        }
+        else
+        {
+            QString resStr_P = QString::number(result_P, 'g', 16);
+            ui->output_P->setText(resStr_P);
+        }
+    }
 }
 
 bool Widget::check(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
