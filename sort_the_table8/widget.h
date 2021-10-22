@@ -44,6 +44,10 @@ private slots:
 
     void monkey(double mass[], int rows);
 
+    bool isSorted(double mass[], int rows);
+
+    void shuffle(double mass[], int rows);
+
 private:
     Ui::Widget *ui;
 };
