@@ -2,6 +2,8 @@
 #include "ui_widget.h"
 #include <cstdlib>
 #include <ctime>
+#include <ctime>
+#include <QElapsedTimer>
 
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
@@ -27,7 +29,7 @@ void Widget::table_sort(double mass[],int rows)
         ui->tableWidget->setItem(i,0, new QTableWidgetItem(str = QString::number(mass[i])));
         //void setItem(int row, int column, QTableWidgetItem *item);
     }
-    ui->time->setText("");
+    //ui->time->setText("");
 }
 
 void Widget::on_plus_clicked()
@@ -35,6 +37,7 @@ void Widget::on_plus_clicked()
     int n = ui->tableWidget->rowCount();
     if (n < 999)
     ui->tableWidget->setRowCount(n+1);
+    ui->tableWidget->setItem(n, 0, new QTableWidgetItem(""));
 }
 
 void Widget::on_minus_clicked()
@@ -152,6 +155,7 @@ void Widget::on_pushButton_sort_clicked()
     int rows = ui->tableWidget->rowCount();
     double mass2[rows];
     QString number_str;
+
     double row_number;
     bool ok, flag = true;
     for(int i=0;i<rows;i++){
@@ -171,7 +175,7 @@ void Widget::on_pushButton_sort_clicked()
 
     if (flag)
     {
-        double start_time =  clock(); // начальное время
+//        double start_time =  clock(); // начальное время
         QPalette pal;
         pal.setColor(QPalette::Base, Qt::white);
         ui->error->setPalette(pal);
@@ -188,7 +192,7 @@ void Widget::on_pushButton_sort_clicked()
         if(ui->button_bubble->isChecked())
             bubble(mass,rows);
         else if(ui->button_fast->isChecked())
-            fast(mass,rows);
+            fast1(mass, 0, rows-1);
         else if(ui->button_comb->isChecked())
             comb(mass,rows);
         else if(ui->button_gnome->isChecked())
@@ -213,20 +217,20 @@ void Widget::on_pushButton_sort_clicked()
                 flag_warning = true;
             }
         }
-        if(flag_warning)
-        {
-            ui->time->setText("");
-        }
-        else
-        {
-        double end_time = clock(); // конечное время
-        double search_time = end_time - start_time;
-        QString time_str = QString::number(search_time, 'g', 16);
-        if(time_str == "0")
-            ui->time->setText("Моментально");
-        else
-            ui->time->setText(time_str);
-        }
+//        if(flag_warning)
+//        {
+//            ui->time->setText("");
+//        }
+//        else
+//        {
+//        double end_time = clock(); // конечное время
+//        double search_time = end_time - start_time;
+//        QString time_str = QString::number(search_time, 'g', 16);
+//        if(time_str == "0")
+//            ui->time->setText("Моментально");
+//        else
+//            ui->time->setText(time_str);
+//        }
     }
     else {
         QPalette pal;
@@ -235,8 +239,19 @@ void Widget::on_pushButton_sort_clicked()
         ui->error->setText("Сортирует только числа.");
     }
 }
+void Widget::timee(int start_time, int end_time)
+{
+    int search_time = end_time - start_time;
+    QString time_str = QString::number((double)search_time / 1000.0);
+    if(time_str == "0")
+        ui->time->setText("Моментально");
+    else
+        ui->time->setText(time_str + " мкс");
+}
 void Widget::bubble(double mass[], int rows)
 {
+    QElapsedTimer timer;
+    timer.start();
     int x = rows;
     for(int i = 1; i < rows; ++i)
     {
@@ -250,53 +265,104 @@ void Widget::bubble(double mass[], int rows)
             }
         }
     }
+    int end_time = clock();
+    int elapsed = timer.nsecsElapsed();
+    timee(0, elapsed);
     table_sort(mass, x);
 }
 
-void Widget::fast(double mass[], int rows)
+int Widget::partition(double a[],int start,int end)
 {
-    int x = rows;
-    int i = 0;
-    int j = rows - 1;
+    int pivot=a[end];
 
-    double mid = mass[rows / 2];
+    int P_index=start;
+    int i,t;
 
-    do
+    for(i=start;i<end;i++)
     {
-
-        while(mass[i] < mid) {
-            i++;
-        }
-
-        while(mass[j] > mid) {
-            j--;
-        }
-
-        if (i <= j)
+        if(a[i]<=pivot)
         {
-            double tmp = mass[i];
-            mass[i] = mass[j];
-            mass[j] = tmp;
-
-            i++;
-            j--;
+            t=a[i];
+            a[i]=a[P_index];
+            a[P_index]=t;
+            P_index++;
         }
-    }
-    while (i <= j);
+     }
 
-    if(j > 0)
-    {
-        fast(mass, j + 1);
-    }
-    if (i < rows)
-    {
-        fast(&mass[i], rows - i);
-    }
-    table_sort(mass, x);
+      t=a[end];
+      a[end]=a[P_index];
+      a[P_index]=t;
+
+     return P_index;
+ }
+// void Widget::fast(double a[],int start,int end)
+// {
+//    int x = end;
+//    int start_time =  clock();
+//    if(start<end)
+//    {
+//         int P_index=partition(a,start,end);
+//             fast(a,start,P_index-1);
+//             fast(a,P_index+1,end);
+//    }
+//    int end_time = clock();
+//    timee(start_time, end_time);
+//    table_sort(a, x);
+//}
+
+void Widget::fast1(double numbers[], int left, int right)
+{
+  int start_time =  clock();
+  QElapsedTimer timer;
+  timer.start();
+
+  fast(numbers, left, right);
+  int end_time = clock();
+  int elapsed = timer.nsecsElapsed();
+  timee(0, elapsed);
+  table_sort(numbers, right);
 }
+
+void Widget::fast(double numbers[], int left, int right)
+{
+  int x = right;
+  double pivot; // разрешающий элемент
+  int l_hold = left; //левая граница
+  int r_hold = right; // правая граница
+  pivot = numbers[left];
+  while (left < right) // пока границы не сомкнутся
+  {
+    while ((numbers[right] >= pivot) && (left < right))
+      right--; // сдвигаем правую границу пока элемент [right] больше [pivot]
+    if (left != right) // если границы не сомкнулись
+    {
+      numbers[left] = numbers[right]; // перемещаем элемент [right] на место разрешающего
+      left++; // сдвигаем левую границу вправо
+    }
+    while ((numbers[left] <= pivot) && (left < right))
+      left++; // сдвигаем левую границу пока элемент [left] меньше [pivot]
+    if (left != right) // если границы не сомкнулись
+    {
+      numbers[right] = numbers[left]; // перемещаем элемент [left] на место [right]
+      right--; // сдвигаем правую границу вправо
+    }
+  }
+  numbers[left] = pivot; // ставим разрешающий элемент на место
+  pivot = left;
+  left = l_hold;
+  right = r_hold;
+  if (left < pivot) // Рекурсивно вызываем сортировку для левой и правой части массива
+    fast(numbers, left, pivot - 1);
+  if (right > pivot)
+    fast(numbers, pivot + 1, right);
+}
+
 
 void Widget::comb(double mass[], int rows)
 {
+    QElapsedTimer timer;
+    timer.start();
+    int start_time =  clock();
     int x = rows;
     int tmp,k;
         int s=rows;
@@ -317,11 +383,16 @@ void Widget::comb(double mass[], int rows)
             if (s==1)
                 rows=k+1;
         }
+    int end_time = clock();
+    int elapsed = timer.nsecsElapsed();
+    timee(0, elapsed);
     table_sort(mass, x);
 }
 
 void Widget::gnome(double mass[], int rows)
 {
+    QElapsedTimer timer;
+    timer.start();
     int index = 0;
     int x = rows;
         while (index < rows) {
@@ -338,6 +409,9 @@ void Widget::gnome(double mass[], int rows)
                 index--;
             }
         }
+    int end_time = clock();
+    int elapsed = timer.nsecsElapsed();
+    timee(0, elapsed);
     table_sort(mass, x);
 }
 
@@ -364,10 +438,15 @@ void Widget::shuffle(double mass[], int rows)
 
 void Widget::monkey(double mass[], int rows)
 {
+    QElapsedTimer timer;
+    timer.start();
     int x = rows;
     while (!isSorted(mass, rows))
     {
         shuffle(mass, rows);
     }
+    int end_time = clock();
+    int elapsed = timer.nsecsElapsed();
+    timee(0, elapsed);
     table_sort(mass, x);
 }

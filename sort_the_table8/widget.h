@@ -10,7 +10,6 @@ class Widget;
 class Widget : public QWidget
 {
     Q_OBJECT
-
 public:
     explicit Widget(QWidget *parent = nullptr);
     ~Widget();
@@ -36,7 +35,7 @@ private slots:
 
     void bubble(double mass[], int rows);
 
-    void fast(double mass[], int rows);
+    //void fast(double mass[], int low, int high);
 
     void comb(double mass[], int rows);
 
@@ -48,6 +47,12 @@ private slots:
 
     void shuffle(double mass[], int rows);
 
+    void timee(int start_time, int end_time);
+
+    int partition(double a[],int start,int end);
+
+    void fast1(double a[],int start,int end);
+    void fast(double a[],int start,int end);
 private:
     Ui::Widget *ui;
 };
