@@ -1,2 +1,2 @@
-Не копируйте весь код. 
-Don't copy all the code.
+Основы программирования 1 курс 1 семестр МИРЭА.
+Fundamentals of programming 1 course 1 semester MIREA.
