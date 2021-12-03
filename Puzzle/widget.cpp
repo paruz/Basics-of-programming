@@ -4,7 +4,6 @@
 #include <ctime>
 #include <QElapsedTimer>
 #include <QFile>
-#include <QFileDialog>
 #include <QTextStream>
 
 Widget::Widget(QWidget *parent) :
@@ -17,6 +16,7 @@ Widget::Widget(QWidget *parent) :
     ui->ButtonSaveResult->hide();
     ui->ButtonShowResult->hide();
     ui->time->hide();
+    ui->textEdit->hide();
 }
 bool flag11, flag12, flag13, flag14, flag21, flag22, flag23, flag24, flag31, flag32, flag33, flag34, flag41, flag42, flag43, flag44 = true;
 //Каждый флаг привязан к определённой кнопе, где первая цифра - это номер строчки, а вторая - номер столбца этой кнопки.
@@ -649,6 +649,7 @@ void Widget::on_create_clicked() // создание игрового поля
     ui->ButtonSaveResult->hide();
     ui->ButtonShowResult->hide();
     ui->time->hide();
+    ui->textEdit->hide();
 }
 
 void Widget::on_help_clicked() // Помощь пользователю, меняет местами два нижних элемента
@@ -707,10 +708,50 @@ void Widget::timer(bool flag)
 }
 void Widget::on_ButtonSaveResult_clicked()
 {
-
+    if (flag3x3)
+    {
+        QFile file("C:/Qt/results_3x3.txt");
+        file.open(QFile::WriteOnly | QFile::ReadOnly | QFile::Text);
+        QTextStream writeData(&file);
+        QString fileText = writeData.readAll();
+        fileText = ui->name->text() + ", Время: " + ui->time->text() + "\n";
+        writeData << fileText;
+        file.flush();
+        file.close();
+        ui->ButtonSaveResult->hide();
+    }
+    else
+    {
+        QFile file("C:/Qt/results_4x4.txt");
+        file.open(QFile::WriteOnly | QFile::ReadOnly | QFile::Text);
+        QTextStream writeData(&file);
+        QString fileText = writeData.readAll();
+        fileText = ui->name->text() + ", Время: " + ui->time->text() + "\n";
+        writeData << fileText;
+        file.flush();
+        file.close();
+        ui->ButtonSaveResult->hide();
+    }
 }
 
 void Widget::on_ButtonShowResult_clicked()
 {
-
+    if (flag3x3)
+    {
+        QFile file("C:/Qt/results_3x3.txt");
+        file.open(QFile::WriteOnly | QFile::ReadOnly | QFile::Text);
+        QTextStream writeData(&file);
+        QString fileText = writeData.readAll();
+        ui->textEdit->show();
+        ui->textEdit->setText(fileText);
+    }
+    else
+    {
+        QFile file("C:/Qt/results_4x4.txt");
+        file.open(QFile::WriteOnly | QFile::ReadOnly | QFile::Text);
+        QTextStream writeData(&file);
+        QString fileText = writeData.readAll();
+        ui->textEdit->show();
+        ui->textEdit->setText(fileText);
+    }
 }
