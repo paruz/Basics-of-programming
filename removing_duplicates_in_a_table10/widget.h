@@ -59,8 +59,15 @@ private slots:
 
     void swap(double &aA, double &aB);
 
+    void on_save_clicked();
+
+    void on_open_clicked();
+
+    int row_count();
+
 private:
     Ui::Widget *ui;
+    QString file_path;
 };
 
 #endif // WIDGET_H

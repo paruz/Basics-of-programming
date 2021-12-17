@@ -3,6 +3,11 @@
 #include <cstdlib>
 #include <ctime>
 #include <QElapsedTimer>
+#include <QFile>
+#include <QFileDialog>
+#include <QTextStream>
+#include <QDataStream>
+#include <QFileInfo>
 
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
@@ -700,7 +705,6 @@ void Widget::on_pushButton_delete_clicked()
             QString delete_count_str = QString::number(delete_count_per);
             ui->delete_count->setText(delete_count_str);
             delete temp;
-            delete mass;
         }
         else
         {
@@ -711,4 +715,126 @@ void Widget::on_pushButton_delete_clicked()
     {
         ui->error->setText("В таблице присутствуют не числа");
     }
+    delete mass;
 }
+
+void Widget::on_save_clicked()
+{
+    if(ui->normal->isChecked())
+    {
+        QFile file1("C:/Qt/table.txt");
+        file1.remove();
+        QFile file("C:/Qt/table.txt");
+        file.open(QFile::WriteOnly | QFile::ReadOnly | QFile::Text);
+        QTextStream writeData(&file);
+        QString fileText, text;
+        int rows = ui->tableWidget->rowCount();
+        for(int i=0;i<rows;i++)
+        {
+            text += ui->tableWidget->item(i,0)->text() + '\n';
+        }
+        fileText = text;
+        writeData << fileText;
+        file.close();
+    }
+    else
+    {
+        QFile file1("C:/Qt/table2.txt");
+        file1.remove();
+        QFile file("C:/Qt/table2.txt");
+        file.open(QFile::WriteOnly | QFile::ReadOnly | QFile::Text);
+        QDataStream writeData(&file);
+        int rows = ui->tableWidget->rowCount();
+        QString number_str;
+        int number;
+        bool ok;
+        for(int i=0;i<rows;i++)
+        {
+            number_str = ui->tableWidget->item(i,0)->text();
+            number = number_str.toInt(&ok);
+            qint32 num = number;
+            writeData << num;
+        }
+        file.close();
+
+    }
+}
+
+void Widget::on_open_clicked()
+{
+    if(ui->normal->isChecked())
+    {
+        QFile file("c:/Qt/table.txt");
+        int line_count=0;
+        file.open(QIODevice::ReadOnly);
+        QString *line = new QString[1000000];
+
+        QTextStream table(&file);
+        while( !table.atEnd())
+        {
+            line[line_count]=table.readLine();
+            line_count++;
+        }
+        int rows = line_count;
+        bool ok, flag = true;
+        double *mass = new double[rows];
+        for (int i = 0; i < rows; i++)
+        {
+            mass[i] = line[i].toDouble(&ok);
+            if(!ok)
+            {
+                ui->error->setText("В файле присутствуют не числа");
+                flag = false;
+                break;
+            }
+        }
+        if(flag)
+            table_sort(mass, rows);
+        file.close();
+        delete [] line;
+        delete [] mass;
+    }
+    else
+    {
+        int rows = row_count();
+        QFile file("c:/Qt/table2.txt");
+        file.open(QIODevice::ReadOnly);
+        QString *line = new QString[1000000];
+
+        QDataStream table(&file);
+        double *mass = new double[rows];
+        for (int i = 0; i < rows; i++)
+        {
+            qint32 num;
+            table >> num;
+            int number = num;
+            mass[i] = number;
+        }
+
+        table_sort(mass, rows);
+        file.close();
+        delete [] line;
+        delete [] mass;
+    }
+}
+int Widget::row_count()
+{
+    QFile file("c:/Qt/table2.txt");
+    file.open(QIODevice::ReadOnly);
+
+    QTextStream table2(&file);
+    QString fileText = table2.readAll();
+
+    int rows = fileText.length() / 4;
+    int x = fileText.length();
+    ui->output_max->setText(QString::number(x));
+    ui->output_min->setText(QString::number(rows));
+    return rows;
+}
+
+
+
+
+
+
+
